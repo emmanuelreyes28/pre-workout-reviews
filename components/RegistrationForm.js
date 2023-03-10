@@ -50,6 +50,26 @@ const RegistrationForm = ({ formId, userForm }) => {
     });
   }
 
+  // make sure email and password is filled - validate form
+  const formValidate = () => {
+    let err = {};
+    if (!user.email) err.email = "Email is required";
+    if (!user.password) err.password = "Password is required";
+    return err;
+  };
+
+  // handle form submission by validating form and making post request
+  const handleSubmit = (e) => {
+    // prevent page from refreshing on submit
+    e.preventDefault();
+    const errs = formValidate();
+    if (Object.keys(errs).length === 0) {
+      postData(user);
+    } else {
+      setErrors({ errs });
+    }
+  };
+
   return (
     <>
       <form id={formId} onSubmit={handleSubmit}>
@@ -71,6 +91,12 @@ const RegistrationForm = ({ formId, userForm }) => {
         />
         <button type="submit">Register</button>
       </form>
+      <p>{message}</p>
+      <div>
+        {Object.keys(errors).map((err, index) => (
+          <li key={index}>{err}</li>
+        ))}
+      </div>
     </>
   );
 };
