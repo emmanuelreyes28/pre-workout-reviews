@@ -1,5 +1,5 @@
 import dbConnect from "lib/dbConnect";
-import User from "../../../models/User";
+import Product from "models/Product";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -9,8 +9,8 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const users = await User.find({});
-        res.status(200).json({ success: true, data: users });
+        const products = await Product.find({});
+        res.status(200).json({ success: true, data: products });
       } catch (error) {
         res.status(400).json({ success: false });
       }
@@ -18,8 +18,8 @@ export default async function handler(req, res) {
     case "POST":
       try {
         console.log(req.body);
-        const user = await User.create(req.body); // create a new model in db
-        res.status(201).json({ success: true, data: user });
+        const product = await Product.create(req.body);
+        res.status(201).json({ success: true, data: product });
       } catch (error) {
         console.error(error);
         res.status(400).json({ success: false });
