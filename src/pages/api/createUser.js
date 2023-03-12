@@ -17,7 +17,6 @@ export default async function handler(req, res) {
       break;
     case "POST":
       try {
-        console.log(req.body);
         const user = await User.create(req.body); // create a new model in db
         res.status(201).json({ success: true, data: user });
       } catch (error) {
