@@ -2,7 +2,6 @@ import Head from "next/head";
 import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
 import Image from "next/image";
-import clientPromise from "lib/mongodb";
 
 export default function Home({ products }) {
   return (
@@ -19,11 +18,32 @@ export default function Home({ products }) {
         </h1>
         <ul>
           {products.map((product, index) => (
-            <li key={index} id={index}>
+            <li key={product._id} id={index}>
               {/* <Image src={product.image} alt="pre-workout" /> */}
               <h2>{product.productName}</h2>
               <h3>{product.brand}</h3>
               <p>{product.benefits}</p>
+              <p>{product.caffeinePerScoop}mg</p>
+              <div>
+                {product.openLabel ? (
+                  <p>Open Label</p>
+                ) : (
+                  <p>Proprietary Blend</p>
+                )}
+              </div>
+              <p>{product.tasteRating}/5</p>
+              <p>{product.overallRating}/5</p>
+              <p>{product.description}</p>
+              <ul>
+                {product.reviews.map((review, index) => (
+                  <li key={review.index} id={index}>
+                    <p>{review.user}</p>
+                    <p>{review.content}</p>
+                    <p>{review.rating}/5</p>
+                    <p>{review.helpfulCount}</p>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>
@@ -32,28 +52,14 @@ export default function Home({ products }) {
   );
 }
 
-// export async function getServerSideProps() {
-//   try {
-//     await dbConnect();
-//     const products = await Product.find({}).toArray();
-//     return { props: { products: JSON.parse(JSON.stringify(products)) } };
-//   } catch (error) {
-//     console.error(error);
-//     return { props: {} };
-//   }
-// }
-
 export async function getServerSideProps() {
   try {
-    const client = await clientPromise;
-    const db = client.db("preworkout");
-
-    const products = await db.collection("products").find({}).toArray();
-
-    return {
-      props: { products: JSON.parse(JSON.stringify(products)) },
-    };
-  } catch (e) {
-    console.error(e);
+    await dbConnect();
+    const products = await Product.find({}); // grab all pre-workout products
+    return { props: { products: JSON.parse(JSON.stringify(products)) } };
+  } catch (error) {
+    console.error(error);
+    // return empty array to ensure app doesnt crash and provides a fallback for rendering the page
+    return { props: { products: [] } };
   }
 }
