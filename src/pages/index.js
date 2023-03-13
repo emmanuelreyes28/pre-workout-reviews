@@ -2,6 +2,7 @@ import Head from "next/head";
 import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
 import Image from "next/image";
+import Card from "components/Card";
 
 export default function Home({ products }) {
   return (
@@ -18,8 +19,11 @@ export default function Home({ products }) {
         </h1>
         <ul>
           {products.map((product, index) => (
-            <li key={product._id} id={index}>
-              {/* <Image src={product.image} alt="pre-workout" /> */}
+            <Card key={product._id} product={product} />
+          ))}
+          {/*{products.map((product, index) => (
+             <li key={product._id} id={index}>
+               <Image src={product.image} alt="pre-workout" /> 
               <h2>{product.productName}</h2>
               <h3>{product.brand}</h3>
               <p>{product.benefits}</p>
@@ -43,9 +47,9 @@ export default function Home({ products }) {
                     <p>{review.helpfulCount}</p>
                   </li>
                 ))}
-              </ul>
+              </ul> 
             </li>
-          ))}
+          ))}*/}
         </ul>
       </div>
     </>
