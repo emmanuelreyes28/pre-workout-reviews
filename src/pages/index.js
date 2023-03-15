@@ -15,40 +15,11 @@ export default function Home({ products }) {
       </Head>
       <div>
         <h1 className="">Pre-Workouts</h1>
-        <ul>
+        <div className="grid gap-2 lg:grid-cols-4">
           {products.map((product, index) => (
             <ProductCard key={product._id} product={product} />
           ))}
-          {/*{products.map((product, index) => (
-             <li key={product._id} id={index}>
-               <Image src={product.image} alt="pre-workout" /> 
-              <h2>{product.productName}</h2>
-              <h3>{product.brand}</h3>
-              <p>{product.benefits}</p>
-              <p>{product.caffeinePerScoop}mg</p>
-              <div>
-                {product.openLabel ? (
-                  <p>Open Label</p>
-                ) : (
-                  <p>Proprietary Blend</p>
-                )}
-              </div>
-              <p>{product.tasteRating}/5</p>
-              <p>{product.overallRating}/5</p>
-              <p>{product.description}</p>
-              <ul>
-                {product.reviews.map((review, index) => (
-                  <li key={review.index} id={index}>
-                    <p>{review.user}</p>
-                    <p>{review.content}</p>
-                    <p>{review.rating}/5</p>
-                    <p>{review.helpfulCount}</p>
-                  </li>
-                ))}
-              </ul> 
-            </li>
-          ))}*/}
-        </ul>
+        </div>
       </div>
     </>
   );

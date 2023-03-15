@@ -2,13 +2,14 @@ import Image from "next/image";
 
 function ProductCard({ product }) {
   return (
-    <li className="">
+    <div className="max-w-sm rounded-lg bg-amber-300">
       <div className="">
         <Image src={product.image} alt="pre-workout" width={400} height={400} />
         <h2 className="">{product.productName}</h2>
         <h3 className="">{product.brand}</h3>
       </div>
       <div className="">
+        {/* iterate over benefits array to display seperately */}
         <p className="">{product.benefits}</p>
         <p className="">{product.caffeinePerScoop}mg</p>
         <div>
@@ -20,9 +21,9 @@ function ProductCard({ product }) {
         </div>
         <p className="">{product.tasteRating}/5</p>
         <p className="">{product.overallRating}/5</p>
-        <p className="">{product.description}</p>
+        {/* <p className="">{product.description}</p> */}
       </div>
-      <ul className="w-full">
+      {/* <ul className="w-full">
         {product.reviews.map((review, index) => (
           <li key={index} className="">
             <p className="">{review.user}</p>
@@ -31,8 +32,8 @@ function ProductCard({ product }) {
             <p className="">{review.helpfulCount}</p>
           </li>
         ))}
-      </ul>
-    </li>
+      </ul> */}
+    </div>
   );
 }
 
