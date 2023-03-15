@@ -2,7 +2,7 @@ import Head from "next/head";
 import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
 import Image from "next/image";
-import Card from "components/Card";
+import ProductCard from "components/ProductCard";
 
 export default function Home({ products }) {
   return (
@@ -14,12 +14,10 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <h1 className="text-3xl font-bold underline text-red-900">
-          Pre-Workouts
-        </h1>
+        <h1 className="">Pre-Workouts</h1>
         <ul>
           {products.map((product, index) => (
-            <Card key={product._id} product={product} />
+            <ProductCard key={product._id} product={product} />
           ))}
           {/*{products.map((product, index) => (
              <li key={product._id} id={index}>

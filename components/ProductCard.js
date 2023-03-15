@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-function Card({ product }) {
+function ProductCard({ product }) {
   return (
     <li className="">
       <div className="">
@@ -36,4 +36,4 @@ function Card({ product }) {
   );
 }
 
-export default Card;
+export default ProductCard;
