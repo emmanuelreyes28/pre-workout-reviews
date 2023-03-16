@@ -2,25 +2,38 @@ import Image from "next/image";
 
 function ProductCard({ product }) {
   return (
-    <div className="max-w-sm rounded-lg bg-amber-300">
-      <div className="">
-        <Image src={product.image} alt="pre-workout" width={400} height={400} />
-        <h2 className="">{product.productName}</h2>
-        <h3 className="">{product.brand}</h3>
-      </div>
-      <div className="">
-        {/* iterate over benefits array to display seperately */}
-        <p className="">{product.benefits}</p>
-        <p className="">{product.caffeinePerScoop}mg</p>
-        <div>
-          {product.openLabel ? (
-            <p className="">Open Label</p>
-          ) : (
-            <p className="">Proprietary Blend</p>
-          )}
+    <div className="max-w-sm max-h-5 rounded-lg bg-amber-300">
+      <div className="outline outline-2 bg-amber-300">
+        <div className="">
+          <Image
+            src={product.image}
+            alt="pre-workout"
+            width={400}
+            height={400}
+          />
+          <p className="flex justify-center text-2xl font-bold">
+            {product.productName}
+          </p>
+          <h3 className="flex justify-center text-md text-stone-900">
+            {product.brand}
+          </h3>
         </div>
-        <p className="">{product.tasteRating}/5</p>
-        <p className="">{product.overallRating}/5</p>
+        <div className="">
+          {/* iterate over benefits array to display seperately */}
+          <p className="">{product.benefits}</p>
+          <p className="flex justify-center">
+            Caffeine: {product.caffeinePerScoop}mg/serving
+          </p>
+          <div>
+            {product.openLabel ? (
+              <p className="">Open Label</p>
+            ) : (
+              <p className="">Proprietary Blend</p>
+            )}
+          </div>
+          <p className="">{product.tasteRating}/5</p>
+          <p className="">{product.overallRating}/5</p>
+        </div>
         {/* <p className="">{product.description}</p> */}
       </div>
       {/* <ul className="w-full">
