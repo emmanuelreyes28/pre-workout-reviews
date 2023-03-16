@@ -18,7 +18,7 @@ function ProductCard({ product }) {
             {product.brand}
           </h3>
         </div>
-        <div className="">
+        <div className="pt-3">
           {/* iterate over benefits array to display seperately */}
           <p className="">{product.benefits}</p>
           <p className="flex justify-center">
@@ -31,8 +31,8 @@ function ProductCard({ product }) {
               <p className="">Proprietary Blend</p>
             )}
           </div>
-          <p className="">{product.tasteRating}/5</p>
-          <p className="">{product.overallRating}/5</p>
+          <p className="">Taste: {product.tasteRating}/5</p>
+          <p className="">Overall: {product.overallRating}/5</p>
         </div>
         {/* <p className="">{product.description}</p> */}
       </div>
