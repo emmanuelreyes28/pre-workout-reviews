@@ -3,7 +3,7 @@ import StarRating from "./StarRating";
 
 function ProductCard({ product }) {
   return (
-    <div className="max-w-sm max-h-5 rounded-lg bg-amber-300">
+    <div className="max-w-sm rounded-lg bg-amber-300">
       <div className="outline outline-2 bg-amber-300">
         <div className="">
           <Image
@@ -23,9 +23,7 @@ function ProductCard({ product }) {
           {/* iterate over benefits array to display seperately */}
           <div className="flex justify-center text-lg font-semibold">
             {product.benefits.map((benefit, index) => (
-              <p key={index} className="">
-                {benefit}&nbsp;
-              </p>
+              <p key={benefit._id}>{benefit}&nbsp;</p>
             ))}
           </div>
           <p className="flex justify-center pt-1 ">

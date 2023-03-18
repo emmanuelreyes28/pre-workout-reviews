@@ -15,10 +15,12 @@ export default function Home({ products }) {
       </Head>
       <div>
         <h1 className="">Pre-Workouts</h1>
-        <div className="grid gap-2 lg:grid-cols-4">
-          {products.map((product, index) => (
-            <ProductCard key={product._id} product={product} />
-          ))}
+        <div className="">
+          <div className="grid gap-2 grid-flow-row grid-cols-4 grid-rows-3">
+            {products.map((product, index) => (
+              <ProductCard key={product._id} product={product} />
+            ))}
+          </div>
         </div>
       </div>
     </>
