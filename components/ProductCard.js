@@ -1,21 +1,5 @@
 import Image from "next/image";
-import { StarSolidIcon } from "@heroicons/react/solid";
-
-function StarRating({ rating }) {
-  const fullStar = <StarSolidIcon className="h-5 w-5 text-yellow-500" />;
-
-  const emptyStar = <StarSolidIcon className="h-5 w-5 text-gray-300" />;
-
-  return (
-    <div className="flex items-center">
-      {[1, 2, 3, 4, 5].map((index) => {
-        const icon = index <= rating ? fullStar : emptyStar;
-        return <span key={index}>{icon}</span>;
-      })}
-      <span className="ml-2">{rating}/5</span>
-    </div>
-  );
-}
+import StarRating from "./StarRating";
 
 function ProductCard({ product }) {
   return (
@@ -37,27 +21,27 @@ function ProductCard({ product }) {
         </div>
         <div className="pt-3">
           {/* iterate over benefits array to display seperately */}
-          <div className="flex justify-center">
+          <div className="flex justify-center text-lg font-semibold">
             {product.benefits.map((benefit, index) => (
               <p key={index} className="">
                 {benefit}&nbsp;
               </p>
             ))}
           </div>
-          <p className="flex justify-center">
+          <p className="flex justify-center pt-1 ">
             Caffeine: {product.caffeinePerScoop}mg/serving
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center pt-1">
             {product.openLabel ? (
               <p className="">Open Label</p>
             ) : (
               <p className="">Proprietary Blend</p>
             )}
           </div>
-          <p className="flex justify-center">
-            Taste: <StarRating rating={product.tasteRating} />
+          <p className="flex justify-center pt-1">
+            Taste: {product.tasteRating}/5
           </p>
-          <p className="flex justify-center">
+          <p className="flex justify-center pt-1 pb-2.5">
             Overall: {product.overallRating}/5
           </p>
         </div>
