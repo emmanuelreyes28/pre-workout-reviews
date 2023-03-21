@@ -1,4 +1,31 @@
+import { useState } from "react";
+
 function Form() {
+  const [product, setProduct] = useState({}); //pass in product details
+
+  const postData = async (product) => {
+    try {
+      const res = await fetch("/api/product", {
+        method: "POST",
+        headers: {
+          Accept: contentType,
+          "Content-Type": contentType,
+        },
+        body: JSON.stringify(product),
+      });
+
+      // throw error with status code in case fetch api req failed
+      if (!res.ok) {
+        throw new Error(res.status);
+      }
+
+      // route user to homepage (root route)
+      router.push("/");
+    } catch (error) {
+      setMessage("Failed to save product");
+    }
+  };
+
   return (
     <>
       <form>
