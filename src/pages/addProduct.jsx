@@ -1,12 +1,16 @@
-import React from "react";
 import Form from "components/Form";
 
-function addProduct() {
-  return (
-    <div>
-      <Form />
-    </div>
-  );
-}
+const NewProduct = () => {
+  const productForm = {
+    image: "",
+    productName: "",
+    brand: "",
+    benefits: "",
+    caffeinePerScoop: "",
+    openLabel: "",
+  };
 
-export default addProduct;
+  return <Form productForm={productForm} />;
+};
+
+export default NewProduct;
