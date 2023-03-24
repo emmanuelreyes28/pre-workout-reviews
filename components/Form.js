@@ -1,7 +1,15 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
-function Form() {
-  const [product, setProduct] = useState({}); //pass in product details
+function Form({ formId, productForm }) {
+  const [product, setProduct] = useState({
+    image: productForm.image,
+    productName: productForm.name,
+    brand: productForm.brand,
+    benefits: productForm.benefits,
+    caffeinePerScoop: productForm.caffeine,
+    openLabel: productForm.label,
+  }); //pass in product details
 
   const postData = async (product) => {
     try {
@@ -32,15 +40,18 @@ function Form() {
         <label htmlFor="name">Pre-Workout Name:</label>
         <input type="text" id="name" name="name" required />
         <label htmlFor="brand">Brand:</label>
-        <input type="text" id="brand" name="brand" />
+        <input type="text" id="brand" name="brand" required />
         <label htmlFor="benefits">Benefits:</label>
-        <input type="text" id="benefits" name="benefits" />
+        <input type="text" id="benefits" name="benefits" required />
         <label htmlFor="caffeine">Caffeine Per Serving:</label>
-        <input type="number" id="caffeine" name="caffeine" />
-        <input type="radio" id="openLabel" name="Open Label" />
-        <label htmlFor="openLabel">Open Label</label>
-        <input type="radio" id="proprietaryBlend" name="Proprietary Blend" />
+        <input type="number" id="caffeine" name="caffeine" required />
+        <input type="radio" id="openLabel" name="label" required />
+        <label htmlFor="label">Open Label</label>
+        <input type="radio" id="proprietaryBlend" name="label" required />
         <label htmlFor="proprietaryBlend">Proprietary Blend</label>
+        <label htmlFor="image">Image URL:</label>
+        <input type="text" id="image" name="image" required />
+        <button type="submit">Submit</button>
       </form>
     </>
   );
