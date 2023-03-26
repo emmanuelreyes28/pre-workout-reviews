@@ -2,14 +2,19 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 
 function Form({ formId, productForm }) {
+  const router = useRouter();
+  const contentType = "application/json";
+  const [errors, setErrors] = useState({});
+  const [mesage, setMessage] = useState("");
+
   const [product, setProduct] = useState({
     image: productForm.image,
-    productName: productForm.name,
+    productName: productForm.name, //may need to change this to productForm.productName
     brand: productForm.brand,
     benefits: productForm.benefits,
-    caffeinePerScoop: productForm.caffeine,
-    openLabel: productForm.label,
-  }); //pass in product details
+    caffeinePerScoop: productForm.caffeinePerScoop,
+    openLabel: productForm.openLabel,
+  });
 
   const postData = async (product) => {
     try {
@@ -34,23 +39,89 @@ function Form({ formId, productForm }) {
     }
   };
 
+  function handleChange(event) {
+    const { name, value } = event.target;
+
+    setProduct((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(product);
+  };
+
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="name">Pre-Workout Name:</label>
-        <input type="text" id="name" name="name" required />
+        <input
+          type="text"
+          id="name"
+          name="productName"
+          value={product.productName}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="brand">Brand:</label>
-        <input type="text" id="brand" name="brand" required />
+        <input
+          type="text"
+          id="brand"
+          name="brand"
+          value={product.brand}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="benefits">Benefits:</label>
-        <input type="text" id="benefits" name="benefits" required />
+        <input
+          type="text"
+          id="benefits"
+          name="benefits"
+          value={product.benefits}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="caffeine">Caffeine Per Serving:</label>
-        <input type="number" id="caffeine" name="caffeine" required />
-        <input type="radio" id="openLabel" name="label" required />
+        <input
+          type="number"
+          id="caffeine"
+          name="caffeinePerScoop"
+          value={product.caffeinePerScoop}
+          onChange={handleChange}
+          required
+        />
+        {/* change open label to question that determines boolean value */}
+        <input
+          type="radio"
+          id="openLabel"
+          name="openLabel"
+          value={product.openLabel}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="label">Open Label</label>
-        <input type="radio" id="proprietaryBlend" name="label" required />
+        <input
+          type="radio"
+          id="proprietaryBlend"
+          name="openLabel"
+          value={product.openLabel}
+          onChange={handleChange}
+          required
+        />
         <label htmlFor="proprietaryBlend">Proprietary Blend</label>
         <label htmlFor="image">Image URL:</label>
-        <input type="text" id="image" name="image" required />
+        <input
+          type="text"
+          id="image"
+          name="image"
+          value={product.image}
+          onChange={handleChange}
+          required
+        />
         <button type="submit">Submit</button>
       </form>
     </>
