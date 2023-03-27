@@ -9,7 +9,7 @@ function Form({ formId, productForm }) {
 
   const [product, setProduct] = useState({
     image: productForm.image,
-    productName: productForm.name, //may need to change this to productForm.productName
+    productName: productForm.productName,
     brand: productForm.brand,
     benefits: productForm.benefits,
     caffeinePerScoop: productForm.caffeinePerScoop,
@@ -42,12 +42,26 @@ function Form({ formId, productForm }) {
   function handleChange(event) {
     const { name, value } = event.target;
 
-    setProduct((prevValue) => {
-      return {
-        ...prevValue,
-        [name]: value,
-      };
-    });
+    if (name === "benefits") {
+      // create a copy of the current benefits array
+      const newBenefits = [...product.benefits];
+      // add the new benefit to the array
+      newBenefits[event.target.id] = value;
+      // update the product state with the new benefits array
+      setProduct((prevValue) => {
+        return {
+          ...prevValue,
+          benefits: newBenefits,
+        };
+      });
+    } else {
+      setProduct((prevValue) => {
+        return {
+          ...prevValue,
+          [name]: value,
+        };
+      });
+    }
   }
 
   const handleSubmit = (e) => {
@@ -76,12 +90,21 @@ function Form({ formId, productForm }) {
           onChange={handleChange}
           required
         />
-        <label htmlFor="benefits">Benefits:</label>
+        <label htmlFor="0">Benefit 1:</label>
         <input
           type="text"
-          id="benefits"
+          id="0"
           name="benefits"
-          value={product.benefits}
+          value={product.benefits[0]}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="1">Benefit 2:</label>
+        <input
+          type="text"
+          id="1"
+          name="benefits"
+          value={product.benefits[1]}
           onChange={handleChange}
           required
         />
@@ -95,24 +118,25 @@ function Form({ formId, productForm }) {
           required
         />
         {/* change open label to question that determines boolean value */}
+        <label>Does pre-workout have an open label?</label>
         <input
           type="radio"
           id="openLabel"
           name="openLabel"
-          value={product.openLabel}
+          value={true}
           onChange={handleChange}
           required
         />
-        <label htmlFor="label">Open Label</label>
+        <label htmlFor="openLabel">Yes</label>
         <input
           type="radio"
           id="proprietaryBlend"
           name="openLabel"
-          value={product.openLabel}
+          value={false}
           onChange={handleChange}
           required
         />
-        <label htmlFor="proprietaryBlend">Proprietary Blend</label>
+        <label htmlFor="proprietaryBlend">No</label>
         <label htmlFor="image">Image URL:</label>
         <input
           type="text"

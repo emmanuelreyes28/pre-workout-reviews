@@ -5,7 +5,7 @@ const NewProduct = () => {
     image: "",
     productName: "",
     brand: "",
-    benefits: "",
+    benefits: [],
     caffeinePerScoop: "",
     openLabel: "",
   };
