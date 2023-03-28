@@ -67,6 +67,7 @@ function Form({ formId, productForm }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(product);
+    postData(product);
   };
 
   return (
@@ -105,6 +106,15 @@ function Form({ formId, productForm }) {
           id="1"
           name="benefits"
           value={product.benefits[1]}
+          onChange={handleChange}
+          required
+        />
+        <label htmlFor="2">Benefit 3:</label>
+        <input
+          type="text"
+          id="2"
+          name="benefits"
+          value={product.benefits[2]}
           onChange={handleChange}
           required
         />
