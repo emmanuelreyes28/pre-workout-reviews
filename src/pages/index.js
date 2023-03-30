@@ -1,7 +1,6 @@
 import Head from "next/head";
 import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
-import Image from "next/image";
 import ProductCard from "components/ProductCard";
 
 export default function Home({ products }) {
