@@ -2,6 +2,7 @@ import Head from "next/head";
 import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
 import ProductCard from "components/ProductCard";
+import Link from "next/link";
 
 export default function Home({ products }) {
   return (
@@ -12,12 +13,18 @@ export default function Home({ products }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div>
+      <div className="container mx-auto my-8 px-4">
         <h1 className="">Pre-Workouts</h1>
         <div className="">
-          <div className="grid gap-2 grid-flow-row grid-cols-4 grid-rows-3">
+          <div className="grid gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {products.map((product, index) => (
-              <ProductCard key={product._id} product={product} />
+              <Link
+                key={product._id}
+                href={`pre-workouts/${product._id}`}
+                className="hover:scale-105"
+              >
+                <ProductCard key={product._id} product={product} />
+              </Link>
             ))}
           </div>
         </div>

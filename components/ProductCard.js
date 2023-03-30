@@ -5,7 +5,7 @@ function ProductCard({ product }) {
   return (
     <div className="max-w-sm rounded-lg bg-amber-300">
       <div className="outline outline-2 bg-amber-300">
-        <div className="">
+        <div className="mb-4">
           <Image
             src={product.image}
             alt="pre-workout"
@@ -21,7 +21,7 @@ function ProductCard({ product }) {
         </div>
         <div className="pt-3">
           {/* iterate over benefits array to display seperately */}
-          <div className="flex justify-center text-lg font-semibold">
+          <div className="flex flex-wrap justify-center text-md md:text-lg font-semibold">
             {product.benefits.map((benefit, index) => (
               <p key={benefit._id}>{benefit}&nbsp;</p>
             ))}
