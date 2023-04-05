@@ -1,5 +1,3 @@
-import dbConnect from "lib/dbConnect";
-import Product from "models/Product";
 import { useEffect, useState } from "react";
 
 export default function ProductDetails({ productId }) {
