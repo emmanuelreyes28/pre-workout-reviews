@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function ProductDetails({ productId }) {
   const [product, setProduct] = useState(null);
@@ -30,8 +31,30 @@ export default function ProductDetails({ productId }) {
   return (
     <>
       <div>
-        <div>{product.productName}</div>
-        <div>Details/Info</div>
+        <div>
+          <div>
+            <Image
+              src={product.image}
+              alt="pre-workout"
+              width={400}
+              height={400}
+            />
+            <div>
+              <h1>{product.productName}</h1>
+              <p>{product.brand}</p>
+              <p>Rating: {product.overallRating}/5</p>
+              <div>
+                {product.benefits.map((benefit) => (
+                  <span key={benefit._id}>{benefit}&nbsp;</span>
+                ))}
+              </div>
+              <div>
+                <p>Description:</p>
+                <p>{product.description}</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
