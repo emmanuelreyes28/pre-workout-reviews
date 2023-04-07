@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function ProductDetails({ productId }) {
   const [product, setProduct] = useState(null);
@@ -60,10 +61,40 @@ export default function ProductDetails({ productId }) {
                 ))}
               </div>
             </div>
-            <div>
-              <p>Description:</p>
-              <p>{product.description}</p>
+            <div className="mb-4">
+              <p className="font-medium mb-1">Description:</p>
+              <p className="text-lg">{product.description}</p>
             </div>
+          </div>
+        </div>
+        <div className="mt-8">
+          <div className="flex justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold pt-2 px-2">REVIEWS</h2>
+              <p className="text-md px-2"># of Ratings</p>
+            </div>
+            <div>
+              <div className="mr-6 mt-4 pt-3">
+                <Link
+                  href="#"
+                  className="px-8 py-4 bg-blue-400 rounded-full hover:bg-blue-500 hover:text-white"
+                >
+                  Write a review
+                </Link>
+              </div>
+            </div>
+          </div>
+          <div>
+            <ul>
+              {product.reviews.map((review) => (
+                <li key={review._id}>
+                  <p>{review.user}</p>
+                  <p>{review.content}</p>
+                  <p>{review.rating}</p>
+                  <p>{review.helpfulContent}</p>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
