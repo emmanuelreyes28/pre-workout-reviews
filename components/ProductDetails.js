@@ -71,7 +71,7 @@ export default function ProductDetails({ productId }) {
           <div className="flex justify-between">
             <div>
               <h2 className="text-2xl font-semibold pt-2 px-2">REVIEWS</h2>
-              <p className="text-md px-2"># of Ratings</p>
+              <p className="text-md px-2">{product.reviews.length} Ratings</p>
             </div>
             <div>
               <div className="mr-6 mt-4 pt-3">
@@ -87,11 +87,13 @@ export default function ProductDetails({ productId }) {
           <div>
             <ul>
               {product.reviews.map((review) => (
-                <li key={review._id}>
-                  <p>{review.user}</p>
-                  <p>{review.content}</p>
-                  <p>{review.rating}</p>
-                  <p>{review.helpfulContent}</p>
+                <li
+                  className="mt-2 mb-2 px-2 border-b-2 border-stone-200"
+                  key={review._id}
+                >
+                  <p className="font-semibold">{review.user}</p>
+                  <p className="pb-2">{review.rating}/5</p>
+                  <p className="pb-2">{review.content}</p>
                 </li>
               ))}
             </ul>
