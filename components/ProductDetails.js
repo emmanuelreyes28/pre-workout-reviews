@@ -76,7 +76,7 @@ export default function ProductDetails({ productId }) {
             <div>
               <div className="mr-6 mt-4 pt-3">
                 <Link
-                  href="#"
+                  href={`/create-review/${product._id}`}
                   className="px-8 py-4 bg-blue-400 rounded-full hover:bg-blue-500 hover:text-white"
                 >
                   Write a review
