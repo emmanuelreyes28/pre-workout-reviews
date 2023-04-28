@@ -28,12 +28,14 @@ export default function ReviewForm({ productId }) {
     return <div>Loading...</div>;
   }
 
-  // add rating, headline and review inputs
-  // at top show which product is being reviewed
-  // after submit clicked take user back to that specific product page
+  // add functionality
+  // when form is submitted send post request to api/product/[id]
+  // include user name, content(review) and rating
+  // may want to include username field in form
+  // add a button to go back to home page if user doesnt wanna write a review
   return (
     <>
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-8 max-w-4xl">
         <div className="border-b-2 border-stone-200">
           <h2 className="text-2xl font-semibold">Create Review</h2>
           <div className="mt-4 flex items-center pb-4">
@@ -67,6 +69,25 @@ export default function ReviewForm({ productId }) {
               max={5}
             />
             <span> Out of 5</span>
+          </div>
+        </div>
+        <div className="border-b-2 border-stone-200 mt-4 pb-4">
+          <div className="text-xl pb-3">
+            <h3>Add a written review</h3>
+          </div>
+          <div>
+            <textarea
+              className="w-full"
+              placeholder="What did you like or dislike?"
+              required
+            />
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <div className="mt-4">
+            <button className="mr-6 px-5 py-2 rounded-full bg-amber-300 font-medium hover:bg-amber-400 hover:border-solid hover:border-black hover:border-2">
+              Submit
+            </button>
           </div>
         </div>
       </div>
