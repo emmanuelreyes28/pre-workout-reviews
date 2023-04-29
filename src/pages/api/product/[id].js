@@ -21,5 +21,22 @@ export default async function handler(req, res) {
         res.status(400).json({ success: false });
       }
       break;
+    case "POST":
+      try {
+        console.log(req.body);
+        const product = await Product.findById(id);
+        if (!product) {
+          // if the product is not found, return a 404 response
+          return res.status(404).json({ success: false });
+        }
+        res.status(201).json({ success: true, data: product });
+      } catch (error) {
+        console.error(error);
+        res.status(400).json({ success: false });
+      }
+      break;
+    default:
+      res.status(400).json({ success: false });
+      break;
   }
 }
