@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 
         // create new review object
         const newReview = {
-          user,
+          user: "JohnDoe",
           content,
           rating,
           helpfulCount: 0,
