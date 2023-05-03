@@ -3,6 +3,11 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 export default function ReviewForm({ productId, reviewForm }) {
+  const router = useRouter();
+  const contentType = "application/json";
+  const [errors, setErrors] = useState({});
+  const [message, setMessage] = useState("");
+
   const [product, setProduct] = useState(null);
   const [review, setReview] = useState({
     user: reviewForm.user,
@@ -36,6 +41,28 @@ export default function ReviewForm({ productId, reviewForm }) {
   }
 
   // create post method that add new review to product in db
+  const postData = async (review) => {
+    try {
+      const res = await fetch(`/api/product/${productId}`, {
+        method: "POST",
+        headers: {
+          Accept: contentType,
+          "Content-Type": contentType,
+        },
+        body: JSON.stringify(review),
+      });
+
+      // throw error with status code in case fetch api req failed
+      if (!res.ok) {
+        throw new Error(res.status);
+      }
+
+      // route user to homepage - change to prev page
+      router.push("/");
+    } catch (error) {
+      setMessage("Failed to post review");
+    }
+  };
 
   // handle event changes made by user and update state of user object
   function handleChange(event) {
@@ -53,6 +80,7 @@ export default function ReviewForm({ productId, reviewForm }) {
     e.preventDefault();
     console.log(review);
     // call post method here
+    postData(review);
   };
 
   // add functionality
@@ -132,6 +160,7 @@ export default function ReviewForm({ productId, reviewForm }) {
           </div>
         </div>
       </form>
+      <p>{message}</p>
     </>
   );
 }
