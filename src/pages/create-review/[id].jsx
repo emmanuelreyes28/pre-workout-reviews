@@ -16,13 +16,3 @@ const NewReview = () => {
 };
 
 export default NewReview;
-
-// export default function CreateReview() {
-//   const router = useRouter();
-//   const { id } = router.query;
-//   return (
-//     <>
-//       <ReviewForm productId={id} />
-//     </>
-//   );
-// }

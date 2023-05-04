@@ -14,8 +14,7 @@ export default function Home({ products }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container mx-auto my-8 px-4">
-        <h1 className="">Pre-Workouts</h1>
-        <div className="">
+        <div>
           <div className="grid gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {products.map((product, index) => (
               <Link

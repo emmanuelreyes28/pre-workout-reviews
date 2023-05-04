@@ -5,7 +5,6 @@ import { useRouter } from "next/router";
 export default function ReviewForm({ productId, reviewForm }) {
   const router = useRouter();
   const contentType = "application/json";
-  const [errors, setErrors] = useState({});
   const [message, setMessage] = useState("");
 
   const [product, setProduct] = useState(null);
@@ -57,8 +56,8 @@ export default function ReviewForm({ productId, reviewForm }) {
         throw new Error(res.status);
       }
 
-      // route user to homepage - change to prev page
-      router.push("/");
+      // route user back to unique product
+      router.push({ pathname: "/pre-workouts/[id]", query: { id: productId } });
     } catch (error) {
       setMessage("Failed to post review");
     }
@@ -83,11 +82,6 @@ export default function ReviewForm({ productId, reviewForm }) {
     postData(review);
   };
 
-  // add functionality
-  // when form is submitted send post request to api/product/[id]
-  // include user name, content(review) and rating
-  // may want to include username field in form
-  // add a button to go back to home page if user doesnt wanna write a review
   return (
     <>
       <form onSubmit={handleSubmit}>
