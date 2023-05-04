@@ -2,14 +2,17 @@ import dbConnect from "lib/dbConnect";
 import Product from "models/Product";
 
 export default async function handler(req, res) {
-  const { method } = req;
+  const {
+    query: { id }, // get the product ID from the request query
+    method,
+    body,
+  } = req;
 
   await dbConnect();
 
   switch (method) {
     case "GET":
       try {
-        const { id } = req.query; // get the product ID from the request query
         const product = await Product.findById(id); // find the product by ID
         if (!product) {
           // if the product is not found, return a 404 response
@@ -24,39 +27,10 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const { id } = req.query;
-        const product = await Product.findById(id).exec();
-        //console.log(req.body);
-        //const product = await Product.findById(id);
-        if (!product) {
-          // if the product is not found, return a 404 response
-          return res.status(404).json({ success: false });
-        }
-
-        // create new review object
-        const newReview = {
-          user: "JohnDoe",
-          content,
-          rating,
-          helpfulCount: 0,
-        };
+        const product = await Product.findById(id);
 
         // add the new review to the product's reviews array
-        product.reviews.push(newReview);
-
-        // calculate the overall and taste rating based on the new review
-        const numReviews = product.reviews.length;
-        const overallRating =
-          product.reviews.reduce((sum, review) => sum + review.rating, 0) /
-          numReviews;
-        const tasteRating =
-          product.reviews.reduct(
-            (sum, review) => sum + review.rating * 0.7,
-            0
-          ) / numReviews;
-
-        // update the product's overall and taste rating
-        product.overallRating = overallRating;
-        product.tasteRating = tasteRating;
+        product.reviews.push(body);
 
         // save the updated product to the database
         await product.save();
