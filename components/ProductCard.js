@@ -12,7 +12,7 @@ function ProductCard({ product }) {
             width={400}
             height={400}
           />
-          <p className="flex justify-center text-2xl font-bold">
+          <p className="flex justify-center text-center text-2xl font-bold">
             {product.productName}
           </p>
           <h3 className="flex justify-center text-md text-stone-900">
