@@ -4,6 +4,7 @@ import Link from "next/link";
 
 export default function ProductDetails({ productId }) {
   const [product, setProduct] = useState(null);
+  const [numReviews, setNumReviews] = useState(5);
 
   //fetch product data from api
   //run everytime productId prop change (dependency)
@@ -28,6 +29,13 @@ export default function ProductDetails({ productId }) {
   if (!product) {
     return <div>Loading...</div>;
   }
+
+  const handleViewMoreReviews = () => {
+    setNumReviews(numReviews + 5); //show additional 5 reviews
+  };
+
+  // slice reviews array based on numReviewsState
+  const reviewsToDisplay = product.reviews.slice(0, numReviews);
 
   return (
     <>
