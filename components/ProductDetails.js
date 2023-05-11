@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ProductDetails({ productId }) {
   const [product, setProduct] = useState(null);
-  const [numReviews, setNumReviews] = useState(5);
+  const [numReviews, setNumReviews] = useState(3);
 
   //fetch product data from api
   //run everytime productId prop change (dependency)
@@ -94,7 +94,7 @@ export default function ProductDetails({ productId }) {
           </div>
           <div>
             <ul>
-              {product.reviews.map((review) => (
+              {reviewsToDisplay.map((review) => (
                 <li
                   className="mt-2 mb-2 px-2 border-b-2 border-stone-200"
                   key={review._id}
@@ -105,6 +105,16 @@ export default function ProductDetails({ productId }) {
                 </li>
               ))}
             </ul>
+            <div className="flex justify-center ">
+              {numReviews < product.reviews.length && (
+                <button
+                  className="px-8 py-4 font-semibold"
+                  onClick={handleViewMoreReviews}
+                >
+                  See more reviews
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
