@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import ReviewForm from "components/ReviewForm";
+import Layout from "components/Layout";
 
 const NewReview = () => {
   const router = useRouter();
@@ -12,7 +13,11 @@ const NewReview = () => {
     helpfulContent: 0,
   };
 
-  return <ReviewForm productId={id} reviewForm={reviewForm} />;
+  return (
+    <Layout>
+      <ReviewForm productId={id} reviewForm={reviewForm} />
+    </Layout>
+  );
 };
 
 export default NewReview;

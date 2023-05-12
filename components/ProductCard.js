@@ -2,10 +2,13 @@ import Image from "next/image";
 import StarRating from "./StarRating";
 
 function ProductCard({ product }) {
+  // only show first 2 benefits for each card
+  const benefitsToDisplay = product.benefits.slice(0, 2);
+
   return (
-    <div className="max-w-sm rounded-lg bg-amber-300">
-      <div className="outline outline-2 bg-amber-300">
-        <div className="mb-4">
+    <div className="max-w-sm rounded-lg ">
+      <div className="rounded-lg shadow-md ">
+        <div className="mb-1">
           <Image
             src={product.image}
             alt="pre-workout"
@@ -19,15 +22,17 @@ function ProductCard({ product }) {
             {product.brand}
           </h3>
         </div>
-        <div className="pt-3">
+        <div className="pt-1">
           {/* iterate over benefits array to display seperately */}
-          <div className="flex flex-wrap justify-center text-md md:text-lg font-semibold">
-            {product.benefits.map((benefit, index) => (
-              <p key={benefit._id}>{benefit}&nbsp;</p>
+          <div className=" text-center text-md md:text-lg font-semibold">
+            {benefitsToDisplay.map((benefit) => (
+              <p key={benefit._id} className="truncate">
+                {benefit}&nbsp;
+              </p>
             ))}
           </div>
-          <p className="flex justify-center pt-1 ">
-            Caffeine: {product.caffeinePerScoop}mg/serving
+          <p className="flex justify-center pt-1 text-red-600">
+            Caffeine: {product.caffeinePerScoop}mg
           </p>
           <div className="flex justify-center pt-1">
             {product.openLabel ? (
@@ -36,25 +41,11 @@ function ProductCard({ product }) {
               <p className="">Proprietary Blend</p>
             )}
           </div>
-          <p className="flex justify-center pt-1">
-            Taste: {product.tasteRating}/5
-          </p>
           <p className="flex justify-center pt-1 pb-2.5">
-            Overall: {product.overallRating}/5
+            Rating: {product.overallRating}/5
           </p>
         </div>
-        {/* <p className="">{product.description}</p> */}
       </div>
-      {/* <ul className="w-full">
-        {product.reviews.map((review, index) => (
-          <li key={index} className="">
-            <p className="">{review.user}</p>
-            <p className="">{review.content}</p>
-            <p className="">{review.rating}/5</p>
-            <p className="">{review.helpfulCount}</p>
-          </li>
-        ))}
-      </ul> */}
     </div>
   );
 }
