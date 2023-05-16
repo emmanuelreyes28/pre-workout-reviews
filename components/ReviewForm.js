@@ -76,9 +76,9 @@ export default function ReviewForm({ productId, reviewForm }) {
   }
 
   const handleSubmit = (e) => {
+    //prevent window from refreshing
     e.preventDefault();
-    console.log(review);
-    // call post method here
+    // send review post request
     postData(review);
   };
 

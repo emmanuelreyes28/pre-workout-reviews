@@ -1,5 +1,4 @@
 import Image from "next/image";
-import StarRating from "./StarRating";
 
 function ProductCard({ product }) {
   // only show first 2 benefits for each card
