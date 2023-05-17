@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
         <div className="flex justify-center text-center py-2">
           <Link href={"https://github.com/emmanuelreyes28/pre-workout-reviews"}>
-            <FaGithub className="text-black hover:text-white" size={24} />
+            <FaGithub className="text-black hover:text-indigo-700" size={24} />
           </Link>
         </div>
       </footer>
