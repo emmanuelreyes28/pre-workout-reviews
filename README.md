@@ -23,10 +23,14 @@ These concepts I already knew but it was my first time using them with Next.js w
 
 ## Run the project
 
-To run locally on localhost:3000
+Visit [The Pre-Workout Insider](https://the-pre-workout-insider.vercel.app/)
+
+OR
+
+Run locally on localhost:3000
 
 ```bash
 npm run dev
 ```
 
-This project will soon be deployed on Vercel. Thank you for looking into my project! 😁
+Thank you for looking into my project! 😁
